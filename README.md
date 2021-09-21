@@ -21,5 +21,45 @@ Now I know what a README can do (kudos to [Tania Rascia](taniarascia.com)) and h
 Tutorial (TBD)/[See demo here](https://kuolai.github.io/test03/)
 ----
 
+Tutorial [git local out of date]
+* Scenario: 
+* Remote: README.md is created; but Local: does not know the change
+* Local: $git status #show nothing changed, however $git remote show origin shows local out of date
+* A bit more complicated in this case of gh-pages branch at both sides
+
+$ git remote show origin
+* remote origin
+  Fetch URL: https://github.com/kuolai/test03.git
+  Push  URL: https://github.com/kuolai/test03.git
+  HEAD branch: main
+  Remote branches:
+    gh-pages tracked
+    main     tracked
+  Local ref configured for 'git push':
+    gh-pages pushes to gh-pages (local out of date)
+
+$ git branch --set-upstream-to=origin/gh-pages gh-pages
+Branch 'gh-pages' set up to track remote branch 'gh-pages' from 'origin'.
+
+$ git remote show origin
+* remote origin
+  Fetch URL: https://github.com/kuolai/test03.git
+  Push  URL: https://github.com/kuolai/test03.git
+  HEAD branch: main
+  Remote branches:
+    gh-pages tracked
+    main     tracked
+  Local branch configured for 'git pull':
+    gh-pages merges with remote gh-pages
+  Local ref configured for 'git push':
+    gh-pages pushes to gh-pages (local out of date)
+
+$ git pull
+Updating 8082140..46b5e44
+Fast-forward
+ README.md | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+ create mode 100644 README.md
+
 
 Tags: jekyll, github pages, git deployment
